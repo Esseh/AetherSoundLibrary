@@ -45,6 +45,17 @@ namespace aether {
         loadedSounds.push(this);
         soundDescriptor->play();
     }
+    void sound::play(std::string fileName,
+                 float maxV,
+                 float soundDelta,
+                 float pitch,
+                 bool relativeToListener,
+                 sf::Vector2f pos,
+                 float soundRadius,
+                 float attenuation
+    ){
+        new aether::sound(fileName,maxV,soundDelta,pitch,relativeToListener,pos,soundRadius,attenuation);
+    }
     sound::~sound(){
         delete soundDescriptor;
         delete soundBuffer;
