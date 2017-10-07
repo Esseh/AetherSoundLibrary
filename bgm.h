@@ -20,6 +20,11 @@ namespace aether {
             float soundDelta;
             /// Function to manage the volume of a BGM, called automatically as needed.
             void updateVolume();
+            /// Creates bgm instance automatically loading it into bgm's memory manager.
+            /// If an existing bgm from the same file exists then it's destructor is called and is replaced with the new instance.
+            /// If the sound should have an absolute position disable relativeToListener.
+            /// NOTE: Spatialization only works for mono tracks
+            bgm(std::string fileName,float maxV = 100, float soundD = 0, bool setLoop = true, bool relativeToListener = true);
         public:
             /// Retrieves an existing BGM track returning NULL if it cannot be found.
             static aether::bgm* get(std::string filename);
@@ -32,11 +37,8 @@ namespace aether {
             static float getVolume();
             /// Sets bgm volume.
             static void setVolume(float newVolume);
-            /// Creates bgm instance automatically loading it into bgm's memory manager.
-            /// If an existing bgm from the same file exists then it's destructor is called and is replaced with the new instance.
-            /// If the sound should have an absolute position disable relativeToListener.
-            /// NOTE: Spatialization only works for mono tracks
-            bgm(std::string fileName,float maxV = 100, float soundD = 0, bool setLoop = false, bool relativeToListener = true);
+            /// Builder object to prevent explicit construction. Loads into the memory manager where it could be retrieved.
+            static void load(std::string fileName,float maxV = 100, float soundD = 0, bool setLoop = true, bool relativeToListener = true);
             /// Stops existing bgm then clears any heap objects it is holding onto.
             ~bgm();
             /// Equivalent to Media Player Play

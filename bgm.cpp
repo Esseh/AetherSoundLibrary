@@ -29,6 +29,9 @@ namespace aether {
         /// Erase each element by file name
         for(auto fn:fileNames) bgm::erase(fn);
     }
+    void bgm::load(std::string fileName,float maxV, float soundD, bool setLoop, bool relativeToListener){
+        new aether::bgm(fileName,maxV,soundD,setLoop,relativeToListener);
+    }
     float bgm::getVolume(){
         return volume;
     }
