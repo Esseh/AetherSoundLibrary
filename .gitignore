@@ -2,3 +2,4 @@ main.*
 *.ogg
 *.flac
 *.exe
+*.o
